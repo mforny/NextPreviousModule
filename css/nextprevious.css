@@ -1,3 +1,15 @@
-.nextprevious a {
-    color: #aaaaaa;
+.nextprevious img {
+    height: 50px;
+    width: auto;
+}
+.nextprevious.arrow {
+    position: fixed;
+    top: 90vh;
+    z-index: 200;
+}
+.nextprevious.previous {
+    left: 20px;
+}
+.nextprevious.next {
+    right: 20px;
 }

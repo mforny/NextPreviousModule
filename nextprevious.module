@@ -38,6 +38,6 @@ function nextprevious_preprocess_block(&$variables) {
   /**
    * Add css class to block
    */
-    $variables['attributes']['class'][] = 'nextprevious';
+    //$variables['attributes']['class'][] = 'nextprevious';
 
 }

@@ -31,8 +31,7 @@ class NextPrevious extends BlockBase {
       $link .= $this->generatePrevious($created_time, $node_type);
       $link .= $this->generateNext($created_time, $node_type);
       return array(
-        '#nextprevious_html' => $link,
-        '#markup' => $link . $node_type,
+        '#markup' => $link,
         '#theme' => 'nextprevious_standard',
         '#cache' => array(
           'contexts' => array('url')
@@ -80,7 +79,7 @@ class NextPrevious extends BlockBase {
       $comparison_opperator = '>';
       $sort = 'ASC';
       $display_text = t('
-      <div class="next arrow">
+      <div class="nextprevious next arrow">
         <img src="' . $base_url . '/' . $module_path .'/images/right-arrow.svg">
       </div>
       ');
@@ -89,7 +88,7 @@ class NextPrevious extends BlockBase {
       $comparison_opperator = '<';
       $sort = 'DESC';
       $display_text = t('
-      <div class="previous arrow">
+      <div class="nextprevious previous arrow">
         <img src="' . $base_url . '/' . $module_path .'/images/left-arrow.svg">
       </div>
       ');
