@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains nextpreviousnode.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function nextprevious_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the nextpreviousnode module.
+    case 'help.page.nextprevious':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Next and Previous Link for node of same content type') . '</p>';
+      return $output;
+
+    default:
+  }
+}

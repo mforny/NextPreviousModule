@@ -1,0 +1,5 @@
+name: Next Previous Node Link
+type: module
+description: Next and Previous Link for node of same content type
+core: 8.x
+package: Custom

@@ -1,0 +1,14 @@
+{
+  "name": "drupal/nextprevious",
+  "type": "drupal-module",
+  "description": "Next and Previous Link for node of same content type",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/nextpreviousnode",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/nextpreviousnode",
+    "source": "http://cgit.drupalcode.org/nextpreviousnode"
+  },
+  "require": { }
+}
