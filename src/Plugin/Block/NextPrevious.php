@@ -31,7 +31,7 @@ class NextPrevious extends BlockBase {
       $link .= $this->generatePrevious($created_time, $node_type);
       $link .= $this->generateNext($created_time, $node_type);
       return array(
-        '#nextprevious_html' => $link . $node_type,
+        '#nextprevious_html' => $link,
         '#markup' => $link . $node_type,
         '#theme' => 'nextprevious_standard',
         '#cache' => array(
@@ -79,12 +79,20 @@ class NextPrevious extends BlockBase {
     if ($direction === 'next') {
       $comparison_opperator = '>';
       $sort = 'ASC';
-      $display_text = t('<img src="' . $base_url . '/' . $module_path .'/images/right-arrow.svg">');
+      $display_text = t('
+      <div class="next arrow">
+        <img src="' . $base_url . '/' . $module_path .'/images/right-arrow.svg">
+      </div>
+      ');
     }
     elseif ($direction === 'prev') {
       $comparison_opperator = '<';
       $sort = 'DESC';
-      $display_text = t('<img src="' . $base_url . '/' . $module_path .'/images/left-arrow.svg">');
+      $display_text = t('
+      <div class="previous arrow">
+        <img src="' . $base_url . '/' . $module_path .'/images/left-arrow.svg">
+      </div>
+      ');
     }
     //Lookup 1 node younger (or older) than the current node
     $query = \Drupal::entityQuery('node');
