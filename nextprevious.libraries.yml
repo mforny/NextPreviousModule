@@ -1,0 +1,8 @@
+nextprevious:
+  version: VERSION
+  js:
+  css:
+    theme:
+      css/nextprevious.css: {}
+  dependencies:
+    - core/drupal

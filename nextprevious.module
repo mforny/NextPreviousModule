@@ -22,3 +22,22 @@ function nextprevious_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+
+
+/**
+ * Implements hook_page_attachments().
+ */
+function nextprevious_page_attachments(&$page) {
+  /**
+   * Add module's main library, which includes nextprevious core JS, and the module's CSS.
+   */
+  $page['#attached']['library'][] = 'nextprevious/nextprevious';
+}
+
+function nextprevious_preprocess_block(&$variables) {
+  /**
+   * Add css class to block
+   */
+    $variables['attributes']['class'][] = 'nextprevious';
+
+}

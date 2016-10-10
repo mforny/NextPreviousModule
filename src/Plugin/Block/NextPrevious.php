@@ -24,18 +24,23 @@ class NextPrevious extends BlockBase {
    */
   public function build() {
     //Get the created time of the current node
-    if(
-      $node = \Drupal::request()->attributes->get('node')){
+    if($node = \Drupal::request()->attributes->get('node')){
       $created_time = $node->getCreatedTime();
       $node_type = $node->getType();
       $link = "";
       $link .= $this->generatePrevious($created_time, $node_type);
       $link .= $this->generateNext($created_time, $node_type);
-      //$link->addCacheTags(['url']);
-      return array('#markup' => $link . $node_type, '#cache' => array('contexts' => array('url')));
+      return array(
+        '#nextprevious_html' => $link . $node_type,
+        '#markup' => $link . $node_type,
+        '#theme' => 'nextprevious_standard',
+        '#cache' => array(
+          'contexts' => array('url')
+        )
+      );
     }
     else {
-      return array('#markup' => '');
+      return array('#markup' => 'Something went wrong');
     }
   }
   /**
@@ -69,15 +74,17 @@ class NextPrevious extends BlockBase {
    * @return string               an html link to the next or previous node
    */
   private function generateNextPrevious($direction = 'next', $created_time, $node_type) {
+    global $base_url;
+    $module_path = drupal_get_path('module', 'nextprevious');
     if ($direction === 'next') {
       $comparison_opperator = '>';
       $sort = 'ASC';
-      $display_text = t('Next' );
+      $display_text = t('<img src="' . $base_url . '/' . $module_path .'/images/right-arrow.svg">');
     }
     elseif ($direction === 'prev') {
       $comparison_opperator = '<';
       $sort = 'DESC';
-      $display_text = t('Previous');
+      $display_text = t('<img src="' . $base_url . '/' . $module_path .'/images/left-arrow.svg">');
     }
     //Lookup 1 node younger (or older) than the current node
     $query = \Drupal::entityQuery('node');
@@ -88,7 +95,7 @@ class NextPrevious extends BlockBase {
       ->execute();
     //If this is not the youngest (or oldest) node
     if (!empty($next) && is_array($next)) {
-      global $base_url;
+
       $next = array_values($next);
       $next = $next[0];
       //Find the alias of the next node
@@ -96,7 +103,11 @@ class NextPrevious extends BlockBase {
       //Build the URL of the next node
       $next_url = Url::fromUri($base_url . $next_url);
       //Build the HTML for the next node
-      return \Drupal::l($display_text, $next_url);
+      return \Drupal::l(
+        $display_text,
+        $next_url
+
+      );
     }
   }
 
